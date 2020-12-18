@@ -1,0 +1,10 @@
+<h1>購買點數卡</h1>
+
+<ul>
+    <% @products.each do |product|%>
+    <li>
+    <%= product.title%>(<%= product.price %> 元）
+    <%= link_to '加到購物車', add_item_cart_path(product), mehtod: 'post' %>
+    </li>
+      <% end%>
+ </ul>

@@ -4,6 +4,16 @@ Rails.application.routes.draw do
   # 原始寫法
   # get '/', to: 'boards#index'
   root 'boards#index'
+  get 'pricing', to: 'pages#pricing'
+
+  resources :orders, only: [:index, :show, :create, :destroy]
+  
+  resource :cart, only: [:show, :destroy] do
+   post 'add_item/:id', action: 'add_item', as: 'add_item_path'
+  get :checkout
+  end
+
+  # 購物車get '/cart/add_item/:id', to: 'cart#add_item'
 
   resources :boards do 
     member do

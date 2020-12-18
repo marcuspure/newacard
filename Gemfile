@@ -32,8 +32,8 @@ gem 'kaminari'
 gem "aasm"
 gem 'friendly_id', '~> 5.4.0'
 gem "babosa"
-
 gem "pundit"
+gem "braintree", "~> 3.1.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

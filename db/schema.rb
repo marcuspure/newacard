@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_060715) do
+ActiveRecord::Schema.define(version: 2020_12_18_063313) do
 
   create_table "boards", force: :cascade do |t|
     t.string "title"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 2020_12_14_060715) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "state"
+    t.index ["state"], name: "index_orders_on_state"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -68,6 +80,11 @@ ActiveRecord::Schema.define(version: 2020_12_14_060715) do
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "pricings", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -89,6 +106,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_060715) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "role", default: "user"
+    t.string "state", default: "user"
   end
 
   add_foreign_key "boards", "users"
